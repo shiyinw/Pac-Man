@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c34d46e1-8ad7-4bb2-bf6e-390c04b2b5fb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/searchAgents.py" beforeDir="false" afterPath="$PROJECT_DIR$/searchAgents.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,12 +30,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="5139" />
+          <entry key="py" value="5489" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="5139" />
+          <entry key="Python" value="5489" />
         </counts>
       </usages-collector>
     </session>
@@ -55,8 +54,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/searchAgents.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2903">
-              <caret line="629" column="26" selection-start-line="629" selection-start-column="26" selection-end-line="629" selection-end-column="26" />
+            <state relative-caret-position="159">
+              <caret line="536" column="87" selection-start-line="536" selection-start-column="87" selection-end-line="536" selection-end-column="87" />
               <folding>
                 <element signature="e#5411#8912#0" />
                 <element signature="e#8958#9379#0" />
@@ -68,7 +67,7 @@
                 <element signature="e#14122#14342#0" />
                 <element signature="e#16481#16701#0" />
                 <element signature="e#21539#22816#0" />
-                <marker date="1541771248214" expanded="true" signature="17979:17986" ph="..." />
+                <marker date="1541771665035" expanded="true" signature="17979:17986" ph="..." />
               </folding>
             </state>
           </provider>
@@ -229,8 +228,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/searchAgents.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2903">
-          <caret line="629" column="26" selection-start-line="629" selection-start-column="26" selection-end-line="629" selection-end-column="26" />
+        <state relative-caret-position="159">
+          <caret line="536" column="87" selection-start-line="536" selection-start-column="87" selection-end-line="536" selection-end-column="87" />
           <folding>
             <element signature="e#5411#8912#0" />
             <element signature="e#8958#9379#0" />
@@ -242,7 +241,7 @@
             <element signature="e#14122#14342#0" />
             <element signature="e#16481#16701#0" />
             <element signature="e#21539#22816#0" />
-            <marker date="1541771248214" expanded="true" signature="17979:17986" ph="..." />
+            <marker date="1541771665035" expanded="true" signature="17979:17986" ph="..." />
           </folding>
         </state>
       </provider>

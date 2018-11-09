@@ -130,15 +130,11 @@ def uniformCostSearch(problem):
 
     while not queue.isEmpty():
         state, actions = queue.pop()
-
         if state in visited:
             continue
-
         visited.add(state)
-
         if problem.isGoalState(state):
             return actions
-
         for state, action, cost in problem.getSuccessors(state):
             queue.push((state, actions + [action]), cost + problem.getCostOfActions(actions))
     "*** YOUR CODE HERE ***"
@@ -160,15 +156,11 @@ def aStarSearch(problem, heuristic=nullHeuristic):
 
     while not queue.isEmpty():
         state, actions = queue.pop()
-
         if state in visited:
             continue
-
         visited.add(state)
-
         if problem.isGoalState(state):
             return actions
-
         for state, action, cost in problem.getSuccessors(state):
             queue.push((state, actions + [action]), cost + problem.getCostOfActions(actions) + heuristic(state, problem = problem))
 

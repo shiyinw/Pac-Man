@@ -499,6 +499,7 @@ def foodHeuristic(state, problem):
 
 
     # step 2 distance
+    # find the maximum distance of position-food and food-food, which forms a triangle, return the two shortest edges of it
     max_bot2food = 0
     if (len(foods) == 0):
         return 0
@@ -533,6 +534,7 @@ def foodHeuristic(state, problem):
 
     try:
         # convex hull
+        # It is obvious that the length of convex hull is smaller than the path length.
         from scipy.spatial import ConvexHull
         hull = ConvexHull(foods)
 
