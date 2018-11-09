@@ -87,26 +87,21 @@ def depthFirstSearch(problem):
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
 
-    print "Start:", problem.getStartState()
-    print "Is the start a goal?", problem.isGoalState(problem.getStartState())
-    print "Start's successors:", problem.getSuccessors(problem.getStartState())
-
     visited = set()
     stack = util.Stack()
     stack.push((problem.getStartState(), []))
     while not stack.isEmpty():
         iter, actions = stack.pop()
+        if problem.isGoalState(iter):
+            return actions
         if iter in visited:
             continue
         visited.add(iter)
         for state, action, cost in problem.getSuccessors(iter):
-            if problem.isGoalState(state):
-                return actions + [action]
-            else:
-                stack.push((state, actions + [action]))
+            stack.push((state, actions + [action]))
 
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    assert 1, "Failed to find a goal with DFS."
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
@@ -116,17 +111,16 @@ def breadthFirstSearch(problem):
     queue.push((problem.getStartState(), []))
     while not queue.isEmpty():
         iter, actions = queue.pop()
+        if problem.isGoalState(iter):
+            return actions
         if iter in visited:
             continue
         visited.add(iter)
         for state, action, cost in problem.getSuccessors(iter):
-            if problem.isGoalState(state):
-                return actions + [action]
-            else:
-                queue.push((state, actions + [action]))
+            queue.push((state, actions + [action]))
 
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    assert 1, "Failed to find a goal with BFS."
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
@@ -148,7 +142,7 @@ def uniformCostSearch(problem):
         for state, action, cost in problem.getSuccessors(state):
             queue.push((state, actions + [action]), cost + problem.getCostOfActions(actions))
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    assert 1, "Failed to find a goal with Uniform Search."
 
 def nullHeuristic(state, problem=None):
     """
@@ -159,6 +153,25 @@ def nullHeuristic(state, problem=None):
 
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
+
+    visited = set()
+    queue = util.PriorityQueue()
+    queue.push((problem.getStartState(), []), 0)
+
+    while not queue.isEmpty():
+        state, actions = queue.pop()
+
+        if state in visited:
+            continue
+
+        visited.add(state)
+
+        if problem.isGoalState(state):
+            return actions
+
+        for state, action, cost in problem.getSuccessors(state):
+            queue.push((state, actions + [action]), cost + problem.getCostOfActions(actions) + heuristic(state, problem = problem))
+
     "*** YOUR CODE HERE ***"
     util.raiseNotDefined()
 
