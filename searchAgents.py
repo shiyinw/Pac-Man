@@ -505,7 +505,7 @@ def foodHeuristic(state, problem):
     farest_food = foods[0]
     far2_food = foods[0]
     for i in foodGrid.asList():
-        score = dist(i, position)
+        score = mazeDistance(i, position, problem.startingGameState)
         if (max_bot2food < score):
             farest_food = i
             max_bot2food = score
@@ -513,7 +513,7 @@ def foodHeuristic(state, problem):
     max_food2food = 0
     for i in foodGrid.asList():
         for j in foodGrid.asList():
-            score = dist(i, j)
+            score = mazeDistance(i, j, problem.startingGameState)
             if (max_food2food < score):
                 max_food2food = score
                 pairs = (i, j)
@@ -521,19 +521,15 @@ def foodHeuristic(state, problem):
     if max_bot2food >= max_food2food:
         maxscore = 0
         for i in foodGrid.asList():
-            score = dist(farest_food, i)
+            score = mazeDistance(farest_food, i, problem.startingGameState)
             if (maxscore < score):
                 far2_food = i
                 maxscore = score
-        maxscore = min([dist(farest_food, position), dist(position, far2_food)]) + dist(farest_food, far2_food)
+        maxscore = min([mazeDistance(farest_food, position, problem.startingGameState), mazeDistance(position, far2_food, problem.startingGameState)]) + mazeDistance(farest_food, far2_food, problem.startingGameState)
 
     else:
         maxscore = max_food2food + min([dist(pairs[0], position), dist(pairs[1], position)])
     maxscore = max(maxscore, len(foods))
-
-    # mazedistance
-
-
 
     try:
         # convex hull
