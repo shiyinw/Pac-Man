@@ -451,6 +451,20 @@ class AStarFoodSearchAgent(SearchAgent):
 def dist(a, b):
     return abs(a[0]-b[0]) + abs(a[1]-b[1])
 
+
+def slop(a, b):
+    return (b[1]-a[1])/(b[0]-a[0])
+
+def maxidx(l, f):
+    maxval = 0
+    maxidx = 0
+    for i in l:
+        if(maxval<f(i)):
+            maxval = f(i)
+            maxidx = i
+    return maxidx
+
+
 def foodHeuristic(state, problem):
     """
     Your heuristic for the FoodSearchProblem goes here.
@@ -481,16 +495,18 @@ def foodHeuristic(state, problem):
     """
     position, foodGrid = state
     "*** YOUR CODE HERE ***"
-
-    max_bot2food = 0
     foods = foodGrid.asList()
-    if(len(foods)==0):
+
+
+    # step 2 distance
+    max_bot2food = 0
+    if (len(foods) == 0):
         return 0
     farest_food = foods[0]
     far2_food = foods[0]
     for i in foodGrid.asList():
         score = dist(i, position)
-        if(max_bot2food<score):
+        if (max_bot2food < score):
             farest_food = i
             max_bot2food = score
 
@@ -498,11 +514,11 @@ def foodHeuristic(state, problem):
     for i in foodGrid.asList():
         for j in foodGrid.asList():
             score = dist(i, j)
-            if(max_food2food<score):
+            if (max_food2food < score):
                 max_food2food = score
                 pairs = (i, j)
 
-    if max_bot2food>=max_food2food:
+    if max_bot2food >= max_food2food:
         maxscore = 0
         for i in foodGrid.asList():
             score = dist(farest_food, i)
@@ -513,8 +529,28 @@ def foodHeuristic(state, problem):
 
     else:
         maxscore = max_food2food + min([dist(pairs[0], position), dist(pairs[1], position)])
+    maxscore = max(maxscore, len(foods))
 
-    return maxscore
+    # mazedistance
+
+
+
+    try:
+        # convex hull
+        from scipy.spatial import ConvexHull
+        hull = ConvexHull(foods)
+
+        convex_score = 0
+        maxlength = 0
+        for i in hull.vertices[1:]:
+            edge = dist(foods[i-1], foods[i])
+            if (maxlength < edge):
+                maxlength = edge
+        convex_score += dist(foods[0], foods[-1])
+        convex_score -= edge
+        return max(convex_score, maxscore)
+    except Exception as e:
+        return maxscore
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
