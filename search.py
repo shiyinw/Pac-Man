@@ -86,16 +86,67 @@ def depthFirstSearch(problem):
     print "Is the start a goal?", problem.isGoalState(problem.getStartState())
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
+
+    print "Start:", problem.getStartState()
+    print "Is the start a goal?", problem.isGoalState(problem.getStartState())
+    print "Start's successors:", problem.getSuccessors(problem.getStartState())
+
+    visited = set()
+    stack = util.Stack()
+    stack.push((problem.getStartState(), []))
+    while not stack.isEmpty():
+        iter, actions = stack.pop()
+        if iter in visited:
+            continue
+        visited.add(iter)
+        for state, action, cost in problem.getSuccessors(iter):
+            if problem.isGoalState(state):
+                return actions + [action]
+            else:
+                stack.push((state, actions + [action]))
+
     "*** YOUR CODE HERE ***"
     util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
+
+    visited = set()
+    queue = util.Queue()
+    queue.push((problem.getStartState(), []))
+    while not queue.isEmpty():
+        iter, actions = queue.pop()
+        if iter in visited:
+            continue
+        visited.add(iter)
+        for state, action, cost in problem.getSuccessors(iter):
+            if problem.isGoalState(state):
+                return actions + [action]
+            else:
+                queue.push((state, actions + [action]))
+
     "*** YOUR CODE HERE ***"
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
+    visited = set()
+    queue = util.PriorityQueue()
+    queue.push((problem.getStartState(), []), 0)
+
+    while not queue.isEmpty():
+        state, actions = queue.pop()
+
+        if state in visited:
+            continue
+
+        visited.add(state)
+
+        if problem.isGoalState(state):
+            return actions
+
+        for state, action, cost in problem.getSuccessors(state):
+            queue.push((state, actions + [action]), cost + problem.getCostOfActions(actions))
     "*** YOUR CODE HERE ***"
     util.raiseNotDefined()
 
